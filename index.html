@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hanu Skanda | Graduate Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── CSS Variables ── */
+    :root {
+      --accent: #3b82c4;         /* Change this to your favourite colour! */
+      --accent-light: #dbeafe;
+      --text: #1c1c1e;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --bg-soft: #f9fafb;
+      --nav-h: 58px;
+      --radius: 8px;
+      --max-w: 860px;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15.5px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-h);
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%; margin: 0 auto;
+      padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; color: var(--text);
+      letter-spacing: 0.3px;
+    }
+    .nav-links { display: flex; gap: 6px; }
+    .nav-links a {
+      padding: 5px 11px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: calc(var(--nav-h) + 52px);
+      padding-bottom: 40px;
+    }
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto; padding: 0 24px;
+      display: flex; gap: 36px; align-items: flex-start;
+    }
+    .hero-photo {
+      flex-shrink: 0;
+    }
+    .hero-photo img {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent-light);
+    }
+    .hero-photo .photo-placeholder {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 3px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--accent);
+    }
+    .hero-info h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; font-weight: 400;
+      margin-bottom: 4px; line-height: 1.2;
+    }
+    .hero-role {
+      font-size: 0.95rem; color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .hero-role span { color: var(--accent); font-weight: 500; }
+    .hero-bio { font-size: 0.95rem; color: #374151; margin-bottom: 16px; }
+    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-links a {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.8rem; font-weight: 500; color: var(--muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+      text-decoration: none;
+    }
+    .social-links svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ── Shared section wrapper ── */
+    .section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 48px 24px 0;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; font-weight: 400;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title .pill {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      background: var(--accent); color: white;
+      padding: 2px 8px; border-radius: 4px;
+    }
+
+    /* ── News ── */
+    .news-list { list-style: none; }
+    .news-list li {
+      display: flex; gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--bg-soft);
+      font-size: 0.9rem;
+    }
+    .news-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem; color: var(--muted);
+      white-space: nowrap; padding-top: 2px; min-width: 80px;
+    }
+    .news-show-more {
+      margin-top: 10px;
+      background: none; border: none; cursor: pointer;
+      color: var(--accent); font-size: 0.85rem; font-family: inherit;
+      padding: 0;
+    }
+    .news-show-more:hover { text-decoration: underline; }
+
+    /* ── Publications ── */
+    .pub-filters {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+    }
+    .filter-btn {
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg); cursor: pointer;
+      font-size: 0.82rem; font-family: inherit; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent); color: white; border-color: var(--accent);
+    }
+    .pub-card {
+      display: flex; gap: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      background: var(--bg);
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .pub-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(59,130,196,0.1); }
+    .pub-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem; color: var(--muted);
+      white-space: nowrap; padding-top: 3px; min-width: 40px;
+    }
+    .pub-content {}
+    .pub-title {
+      font-weight: 600; font-size: 0.92rem; margin-bottom: 4px;
+    }
+    .pub-authors { font-size: 0.83rem; color: var(--muted); margin-bottom: 4px; }
+    .pub-venue { font-size: 0.83rem; font-style: italic; color: #374151; margin-bottom: 8px; }
+    .pub-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .tag-journal { background: #dbeafe; color: #1d4ed8; }
+    .tag-conference { background: #d1fae5; color: #065f46; }
+    .tag-preprint { background: #fef3c7; color: #92400e; }
+    .tag-link {
+      background: none; border: 1px solid var(--border); color: var(--muted);
+      padding: 2px 8px; border-radius: 4px; font-size: 0.72rem;
+      cursor: pointer; font-family: inherit;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      transition: all 0.2s;
+    }
+    .tag-link:hover { border-color: var(--accent); color: var(--accent); }
+    .pub-card[data-hidden="true"] { display: none; }
+
+    /* ── Research Interests ── */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .interest-card {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-soft);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .interest-card:hover { border-color: var(--accent); background: var(--accent-light); }
+    .interest-icon { font-size: 1.4rem; margin-bottom: 8px; }
+    .interest-label { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+    .interest-desc { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── Education & Experience (Timeline) ── */
+    .timeline { position: relative; padding-left: 20px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 6px; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 22px; }
+    .tl-dot {
+      position: absolute; left: -24px; top: 5px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent); border: 2px solid white;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .tl-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; color: var(--muted); margin-bottom: 2px;
+    }
+    .tl-title { font-weight: 600; font-size: 0.92rem; }
+    .tl-place { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── Contact ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .contact-block p { font-size: 0.9rem; color: #374151; line-height: 1.8; }
+    .contact-block strong { color: var(--text); }
+
+    /* ── Footer ── */
+    footer {
+      max-width: var(--max-w); margin: 60px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    /* ── Utilities ── */
+    .spacer { height: 48px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero-inner { flex-direction: column; gap: 20px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Hanu Skanda</div>
+    <div class="nav-links">
+      <a href="#about" class="active">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#research">Research</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero / About ── -->
+<section id="about">
+  <div class="hero">
+    <div class="hero-inner">
+      <!-- Replace src with your photo path, e.g. assets/profile.jpg -->
+      <div class="hero-photo">
+        <div class="photo-placeholder">HS</div>
+        <!-- Uncomment when you have a photo:
+        <img src="assets/profile.jpg" alt="Hanu Skanda">
+        -->
+      </div>
+
+      <div class="hero-info">
+        <h1>Hanu Skanda</h1>
+        <p class="hero-role">
+          Graduate Researcher · <span>Electrical Engineering</span> ·
+          [Your University Name]
+        </p>
+        <p class="hero-bio">
+          I am a graduate researcher working in the field of epilepsy,
+          with interests spanning [your research areas].
+          My work focuses on [brief 1–2 sentence description of your research].
+          <!-- Fill this in with your own story! -->
+        </p>
+        <div class="social-links">
+          <a href="mailto:your@email.edu">
+            <!-- Email icon -->
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Email
+          </a>
+          <a href="https://scholar.google.com/" target="_blank">
+            <!-- Scholar icon simplified -->
+            <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18V17c0 2.76 4.92 5 7 5s7-2.24 7-5v-5.82L20 9v8h2V9L12 3zm6.18 7L12 13.72 5.82 10 12 6.28 18.18 10z"/></svg>
+            Google Scholar
+          </a>
+          <a href="https://github.com/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.41 7.86 10.94.57.1.78-.25.78-.55v-1.92c-3.19.69-3.86-1.54-3.86-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18A10.9 10.9 0 0 1 12 6.5c.97 0 1.95.13 2.86.38 2.18-1.49 3.14-1.18 3.14-1.18.63 1.58.23 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.37-5.25 5.65.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.79.55C20.22 21.4 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            GitHub
+          </a>
+          <a href="https://linkedin.com/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM9 17H6.5v-7H9v7zm-1.25-8.27a1.38 1.38 0 1 1 0-2.76 1.38 1.38 0 0 1 0 2.76zM18 17h-2.5v-3.5c0-1-.02-2.29-1.4-2.29-1.4 0-1.61 1.09-1.61 2.22V17H10v-7h2.4v.96h.03c.33-.63 1.15-1.29 2.37-1.29 2.53 0 3 1.67 3 3.84V17z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://orcid.org/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5h-1.5V9H11v7.5zm-.75-8.75a.88.88 0 1 1 0-1.76.88.88 0 0 1 0 1.76zM16 16.5h-1.5v-2.83c0-.6-.01-1.37-.84-1.37-.84 0-.97.66-.97 1.33v2.87H11.2V11h1.44v.7h.02c.2-.38.69-.78 1.42-.78 1.52 0 1.8 1 1.8 2.3v3.28z"/></svg>
+            ORCID
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── News ── -->
+<section id="news">
+  <div class="section">
+    <h2 class="section-title">News <span class="pill">Latest</span></h2>
+    <ul class="news-list" id="news-list">
+
+      <li>
+        <span class="news-date">2026 Mar</span>
+        <span>🎉 [Add your latest update — paper accepted, conference talk, award, etc.]</span>
+      </li>
+      <li>
+        <span class="news-date">2025 Nov</span>
+        <span>📣 [Another news item — e.g. presented at a conference]</span>
+      </li>
+      <li>
+        <span class="news-date">2025 Aug</span>
+        <span>📝 [E.g. new preprint submitted to arXiv]</span>
+      </li>
+      <li data-extra="true" style="display:none;">
+        <span class="news-date">2025 May</span>
+        <span>[Older item — shown when "Show more" is clicked]</span>
+      </li>
+      <li data-extra="true" style="display:none;">
+        <span class="news-date">2025 Jan</span>
+        <span>[Another older item]</span>
+      </li>
+
+    </ul>
+    <button class="news-show-more" id="news-toggle" onclick="toggleNews()">
+      ↓ Show older news
+    </button>
+  </div>
+</section>
+
+<!-- ── Publications ── -->
+<section id="publications">
+  <div class="section">
+    <h2 class="section-title">Publications</h2>
+
+    <!-- Filter buttons — add/remove types as needed -->
+    <div class="pub-filters">
+      <button class="filter-btn active" onclick="filterPubs('all', this)">All</button>
+      <button class="filter-btn" onclick="filterPubs('journal', this)">Journal</button>
+      <button class="filter-btn" onclick="filterPubs('conference', this)">Conference</button>
+      <button class="filter-btn" onclick="filterPubs('preprint', this)">Preprint</button>
+    </div>
+
+    <!-- ── PUBLICATION CARDS — copy/paste to add more ── -->
+
+    <div class="pub-card" data-type="journal">
+      <div class="pub-year">2026</div>
+      <div class="pub-content">
+        <div class="pub-title">Your Paper Title Goes Here</div>
+        <div class="pub-authors"><strong>Hanu Skanda</strong>, Co-Author One, Co-Author Two</div>
+        <div class="pub-venue">Journal Name, Volume(Issue), Pages</div>
+        <div class="pub-tags">
+          <span class="tag tag-journal">Journal</span>
+          <button class="tag-link" onclick="window.open('#','_blank')">DOI</button>
+          <button class="tag-link" onclick="window.open('#','_blank')">PDF</button>
+          <button class="tag-link" onclick="toggleAbstract(this)">Abstract ↓</button>
+        </div>
+        <p class="pub-abstract" style="display:none; margin-top:10px; font-size:0.85rem; color:#374151; border-left:3px solid var(--accent); padding-left:12px;">
+          Replace this with your paper's abstract. A brief summary of the methods, findings, and significance of your work.
+        </p>
+      </div>
+    </div>
+
+    <div class="pub-card" data-type="conference">
+      <div class="pub-year">2025</div>
+      <div class="pub-content">
+        <div class="pub-title">Another Paper Title — Conference Version</div>
+        <div class="pub-authors"><strong>Hanu Skanda</strong>, Co-Author Name</div>
+        <div class="pub-venue">Conference Name (CONF ACRONYM), City, Country</div>
+        <div class="pub-tags">
+          <span class="tag tag-conference">Conference</span>
+          <button class="tag-link" onclick="window.open('#','_blank')">DOI</button>
+          <button class="tag-link" onclick="toggleAbstract(this)">Abstract ↓</button>
+        </div>
+        <p class="pub-abstract" style="display:none; margin-top:10px; font-size:0.85rem; color:#374151; border-left:3px solid var(--accent); padding-left:12px;">
+          Abstract for the conference paper goes here.
+        </p>
+      </div>
+    </div>
+
+    <div class="pub-card" data-type="preprint">
+      <div class="pub-year">2025</div>
+      <div class="pub-content">
+        <div class="pub-title">Preprint / Under Review Paper Title</div>
+        <div class="pub-authors"><strong>Hanu Skanda</strong>, Collaborator Name</div>
+        <div class="pub-venue">Under Review — Target Journal Name</div>
+        <div class="pub-tags">
+          <span class="tag tag-preprint">Preprint</span>
+          <button class="tag-link" onclick="window.open('#','_blank')">arXiv</button>
+          <button class="tag-link" onclick="toggleAbstract(this)">Abstract ↓</button>
+        </div>
+        <p class="pub-abstract" style="display:none; margin-top:10px; font-size:0.85rem; color:#374151; border-left:3px solid var(--accent); padding-left:12px;">
+          Preprint abstract goes here.
+        </p>
+      </div>
+    </div>
+
+    <!-- Add more pub-card blocks above this comment -->
+
+    <p style="margin-top:18px; font-size:0.85rem; color:var(--muted);">
+      Full list on
+      <a href="https://scholar.google.com/" target="_blank">Google Scholar</a> ·
+      <a href="https://orcid.org/" target="_blank">ORCID</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── Research Interests ── -->
+<section id="research">
+  <div class="section">
+    <h2 class="section-title">Research Interests</h2>
+    <div class="interest-grid">
+
+      <div class="interest-card">
+        <div class="interest-icon">⚡</div>
+        <div class="interest-label">Epilepsy Networks</div>
+        <div class="interest-desc">Large-scale brain network analysis in epilepsy</div>
+      </div>
+
+      <div class="interest-card">
+        <div class="interest-icon">🧠</div>
+        <div class="interest-label">EEG / MEG Analysis</div>
+        <div class="interest-desc">Source-space connectivity and signal processing</div>
+      </div>
+
+      <div class="interest-card">
+        <div class="interest-icon">🔗</div>
+        <div class="interest-label">Graph Theory</div>
+        <div class="interest-desc">Mesoscale topology and network biomarkers</div>
+      </div>
+
+      <div class="interest-card">
+        <div class="interest-icon">🤖</div>
+        <div class="interest-label">Machine Learning</div>
+        <div class="interest-desc">Classification and unsupervised pattern discovery</div>
+      </div>
+
+      <!-- Add or edit interest cards here -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Education & Experience ── -->
+<div class="section" id="cv">
+  <h2 class="section-title">Education</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">20XX – Present</div>
+      <div class="tl-title">Ph.D. in Electrical Engineering</div>
+      <div class="tl-place">Your University · Advisor: Prof. Name</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">20XX – 20XX</div>
+      <div class="tl-title">M.S. / B.Tech / B.E. in [Field]</div>
+      <div class="tl-place">Previous University Name</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:28px;">
+    <a href="assets/CV_HanuSkanda.pdf" target="_blank" style="
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 20px;
+      border: 1.5px solid var(--accent);
+      border-radius: var(--radius);
+      color: var(--accent); font-weight: 600; font-size: 0.88rem;
+      transition: background 0.2s, color 0.2s;
+    " onmouseover="this.style.background='var(--accent)';this.style.color='white'"
+       onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">
+      ↓ Download Full CV (PDF)
+    </a>
+  </div>
+</div>
+
+<!-- ── Contact ── -->
+<section id="contact">
+  <div class="section">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <p>
+          <strong>Mailing Address</strong><br>
+          [Room / Building Number]<br>
+          [Department Name]<br>
+          [University Name]<br>
+          [City, State ZIP]<br>
+          United States
+        </p>
+      </div>
+      <div class="contact-block">
+        <p>
+          <strong>Email</strong><br>
+          <a href="mailto:your@email.edu">your@email.edu</a>
+        </p>
+        <p style="margin-top:14px;">
+          I'm always open to collaborations and conversations about
+          epilepsy research, signal processing, and brain networks.
+          Feel free to reach out!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- ── Footer ── -->
+<footer>
+  <span>© 2026 Hanu Skanda</span>
+  <span>Last updated: <span id="last-updated"></span></span>
+</footer>
+
+<script>
+  /* ── Nav active state on scroll ── */
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+
+  /* ── News toggle ── */
+  let newsExpanded = false;
+  function toggleNews() {
+    newsExpanded = !newsExpanded;
+    document.querySelectorAll('[data-extra="true"]').forEach(el => {
+      el.style.display = newsExpanded ? 'flex' : 'none';
+    });
+    document.getElementById('news-toggle').textContent =
+      newsExpanded ? '↑ Show less' : '↓ Show older news';
+  }
+
+  /* ── Publication filter ── */
+  function filterPubs(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.pub-card').forEach(card => {
+      card.dataset.hidden = (type !== 'all' && card.dataset.type !== type) ? 'true' : 'false';
+    });
+  }
+
+  /* ── Abstract toggle ── */
+  function toggleAbstract(btn) {
+    const abs = btn.closest('.pub-content').querySelector('.pub-abstract');
+    const visible = abs.style.display !== 'none';
+    abs.style.display = visible ? 'none' : 'block';
+    btn.textContent = visible ? 'Abstract ↓' : 'Abstract ↑';
+  }
+
+  /* ── Last updated ── */
+  const d = new Date(document.lastModified);
+  document.getElementById('last-updated').textContent =
+    d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+</script>
+
+</body>
+</html>
